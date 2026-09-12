@@ -1,0 +1,1803 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>iCoder | Technology & Web Development</title>
+
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f8f9fa;
+            color: #212529;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            padding: 12px 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .navbar-nav .nav-link {
+            margin-right: 10px;
+            transition: 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #17a2b8 !important;
+        }
+
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-area {
+            display: none;
+            align-items: center;
+        }
+
+        .user-name {
+            color: white;
+            margin-right: 12px;
+            font-weight: 600;
+        }
+
+        .user-name i {
+            margin-right: 5px;
+        }
+
+        /* ================= CAROUSEL ================= */
+
+        .carousel-item {
+            height: 520px;
+            background: #000;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 520px;
+            object-fit: cover;
+            opacity: 0.65;
+        }
+
+        .carousel-caption {
+            bottom: 25%;
+        }
+
+        .carousel-caption h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px #000;
+        }
+
+        .carousel-caption p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 5px #000;
+        }
+
+        .carousel-caption .btn {
+            margin: 5px;
+            padding: 10px 20px;
+            border-radius: 30px;
+        }
+
+        /* ================= BLOG ================= */
+
+        .blog-section {
+            padding: 50px 0;
+        }
+
+        .blog-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .blog-title h2 {
+            font-weight: 700;
+        }
+
+        .blog-title p {
+            color: #6c757d;
+        }
+
+        .blog-card {
+            background: #fff;
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: 0.3s ease;
+            height: 100%;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+        }
+
+        .blog-card .card-body {
+            padding: 25px;
+        }
+
+        .category {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .blog-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .blog-card h3 a {
+            color: #212529;
+            text-decoration: none;
+        }
+
+        .blog-card h3 a:hover {
+            color: #007bff;
+        }
+
+        .blog-card p {
+            color: #6c757d;
+            line-height: 1.7;
+        }
+
+        .read-more {
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        /* ================= MODAL ================= */
+
+        .modal-content {
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .modal-header {
+            padding: 18px 25px;
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .modal-title {
+            font-weight: 700;
+        }
+
+        .form-control {
+            border-radius: 7px;
+            min-height: 45px;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15);
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper .form-control {
+            padding-right: 45px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            color: #6c757d;
+            outline: none;
+        }
+
+        .password-toggle:hover {
+            color: #007bff;
+        }
+
+        .error-message {
+            display: none;
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 6px;
+            padding: 10px 12px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 6px;
+            padding: 10px 12px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #212529;
+            color: #fff;
+            padding: 35px 0;
+            margin-top: 30px;
+        }
+
+        footer h5 {
+            font-weight: 700;
+        }
+
+        footer a {
+            color: #adb5bd;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        .copyright {
+            color: #adb5bd;
+            margin-bottom: 0;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 991px) {
+
+            .auth-buttons,
+            .user-area {
+                margin-top: 12px;
+                padding-bottom: 10px;
+            }
+
+            .form-inline {
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .carousel-item,
+            .carousel-item img {
+                height: 420px;
+            }
+
+            .carousel-caption {
+                bottom: 15%;
+            }
+
+            .carousel-caption h2 {
+                font-size: 2rem;
+            }
+
+            .carousel-caption p {
+                font-size: 1rem;
+            }
+
+            .carousel-caption .btn {
+                font-size: 0.85rem;
+                padding: 8px 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+
+            .carousel-item,
+            .carousel-item img {
+                height: 350px;
+            }
+
+            .carousel-caption {
+                bottom: 10%;
+            }
+
+            .carousel-caption h2 {
+                font-size: 1.6rem;
+            }
+
+            .carousel-caption p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+
+        <div class="container">
+
+            <a class="navbar-brand" href="#">
+                iCoder
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+                <!-- Navigation -->
+
+                <ul class="navbar-nav mr-auto">
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">
+                            Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">
+                            About
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">
+                            Contact Us
+                        </a>
+                    </li>
+
+
+                    <!-- Topics -->
+
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown">
+
+                            Topics
+
+                        </a>
+
+                        <div class="dropdown-menu">
+
+                            <a class="dropdown-item" href="#technology">
+
+                                Technology
+
+                            </a>
+
+                            <a class="dropdown-item" href="#web-development">
+
+                                Web Development
+
+                            </a>
+
+                            <div class="dropdown-divider"></div>
+
+                            <a class="dropdown-item" href="#support">
+
+                                Support
+
+                            </a>
+
+                            <a class="dropdown-item" href="#">
+
+                                Write for Us
+
+                            </a>
+
+                        </div>
+
+                    </li>
+
+                </ul>
+
+
+                <!-- Search -->
+
+                <form class="form-inline my-2 my-lg-0 mr-3" onsubmit="searchWebsite(event)">
+
+                    <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search">
+
+                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">
+
+                        Search
+
+                    </button>
+
+                </form>
+
+
+                <!-- Login / Sign Up -->
+
+                <div class="auth-buttons" id="authButtons">
+
+                    <button class="btn btn-outline-light mr-2" data-toggle="modal" data-target="#loginModal">
+
+                        Login
+
+                    </button>
+
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#signupModal">
+
+                        Sign Up
+
+                    </button>
+
+                </div>
+
+
+                <!-- Logged-in User -->
+
+                <div class="user-area" id="userArea">
+
+                    <span class="user-name">
+                        👤 <span id="loggedUserName"></span>
+                    </span>
+
+                    <button class="btn btn-outline-danger" onclick="logoutUser()">
+
+                        Logout
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =====================================================
+     CAROUSEL
+===================================================== -->
+
+    <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel" data-interval="4000">
+
+
+        <ol class="carousel-indicators">
+
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">
+            </li>
+
+            <li data-target="#carouselExampleIndicators" data-slide-to="1">
+            </li>
+
+            <li data-target="#carouselExampleIndicators" data-slide-to="2">
+            </li>
+
+        </ol>
+
+
+        <div class="carousel-inner">
+
+
+            <!-- Slide 1 -->
+
+            <div class="carousel-item active">
+
+                <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1600&q=80"
+                    class="d-block w-100" alt="Developer coding">
+
+                <div class="carousel-caption d-block">
+
+                    <h2>
+                        Welcome to iCoder
+                    </h2>
+
+                    <p>
+                        Technology News, Development and Trends
+                    </p>
+
+                    <a href="#technology" class="btn btn-danger">
+
+                        Technology
+
+                    </a>
+
+                    <a href="#web-development" class="btn btn-primary">
+
+                        Web Development
+
+                    </a>
+
+                    <a href="#tech-fun" class="btn btn-success">
+
+                        Tech Fun
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Slide 2 -->
+
+            <div class="carousel-item">
+
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80"
+                    class="d-block w-100" alt="Web developer workspace">
+
+                <div class="carousel-caption d-block">
+
+                    <h2>
+                        Build. Learn. Create.
+                    </h2>
+
+                    <p>
+                        Explore the world of modern web development.
+                    </p>
+
+                    <a href="#web-development" class="btn btn-primary">
+
+                        Learn Web Development
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Slide 3 -->
+
+            <div class="carousel-item">
+
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80"
+                    class="d-block w-100" alt="Technology">
+
+                <div class="carousel-caption d-block">
+
+                    <h2>
+                        Discover New Technology
+                    </h2>
+
+                    <p>
+                        Stay updated with the latest technology trends.
+                    </p>
+
+                    <a href="#technology" class="btn btn-info">
+
+                        Explore Technology
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+
+            <span class="carousel-control-prev-icon"></span>
+
+            <span class="sr-only">
+                Previous
+            </span>
+
+        </a>
+
+
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+
+            <span class="carousel-control-next-icon"></span>
+
+            <span class="sr-only">
+                Next
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <!-- =====================================================
+     BLOG SECTION
+===================================================== -->
+
+    <section class="blog-section">
+
+        <div class="container">
+
+            <div class="blog-title">
+
+                <h2>
+                    Latest From iCoder
+                </h2>
+
+                <p>
+                    Learn technology, programming and web development.
+                </p>
+
+            </div>
+
+
+            <div class="row">
+
+
+                <!-- Card 1 -->
+
+                <div class="col-md-6 mb-4" id="technology">
+
+                    <div class="blog-card">
+
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
+                            alt="Technology">
+
+                        <div class="card-body">
+
+                            <span class="category text-primary">
+                                Technology
+                            </span>
+
+                            <h3>
+                                <a href="#">
+                                    The Future of Technology
+                                </a>
+                            </h3>
+
+                            <small class="text-muted">
+                                September 10, 2026
+                            </small>
+
+                            <p class="mt-3">
+                                Discover how modern technology is changing
+                                the way we work, communicate and build
+                                digital experiences.
+                            </p>
+
+                            <a href="#" class="read-more text-primary">
+
+                                Continue reading →
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Card 2 -->
+
+                <div class="col-md-6 mb-4" id="web-development">
+
+                    <div class="blog-card">
+
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
+                            alt="Web Development">
+
+                        <div class="card-body">
+
+                            <span class="category text-success">
+                                Web Development
+                            </span>
+
+                            <h3>
+                                <a href="#">
+                                    Learn Modern Web Development
+                                </a>
+                            </h3>
+
+                            <small class="text-muted">
+                                September 9, 2026
+                            </small>
+
+                            <p class="mt-3">
+                                Learn HTML, CSS, JavaScript and modern
+                                development techniques to create powerful
+                                websites.
+                            </p>
+
+                            <a href="#" class="read-more text-success">
+
+                                Continue reading →
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Card 3 -->
+
+                <div class="col-md-6 mb-4" id="tech-fun">
+
+                    <div class="blog-card">
+
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80"
+                            alt="Tech Fun">
+
+                        <div class="card-body">
+
+                            <span class="category text-danger">
+                                Tech Fun
+                            </span>
+
+                            <h3>
+                                <a href="#">
+                                    Interesting Tech Facts
+                                </a>
+                            </h3>
+
+                            <small class="text-muted">
+                                September 8, 2026
+                            </small>
+
+                            <p class="mt-3">
+                                Explore interesting facts, programming
+                                concepts and fun discoveries from technology.
+                            </p>
+
+                            <a href="#" class="read-more text-danger">
+
+                                Continue reading →
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Card 4 -->
+
+                <div class="col-md-6 mb-4" id="support">
+
+                    <div class="blog-card">
+
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80"
+                            alt="Programming">
+
+                        <div class="card-body">
+
+                            <span class="category text-info">
+                                Programming
+                            </span>
+
+                            <h3>
+                                <a href="#">
+                                    Start Your Programming Journey
+                                </a>
+                            </h3>
+
+                            <small class="text-muted">
+                                September 7, 2026
+                            </small>
+
+                            <p class="mt-3">
+                                Start learning programming step by step and
+                                build the skills required for a successful
+                                career in technology.
+                            </p>
+
+                            <a href="#" class="read-more text-info">
+
+                                Continue reading →
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+     ABOUT
+===================================================== -->
+
+    <section id="about" class="py-5 bg-white">
+
+        <div class="container text-center">
+
+            <h2 class="font-weight-bold">
+                About iCoder
+            </h2>
+
+            <p class="lead text-muted mt-3">
+
+                iCoder is a technology-focused website created to share
+                programming tutorials, web development resources,
+                technology news and useful coding knowledge.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+     CONTACT
+===================================================== -->
+
+    <section id="contact" class="py-5">
+
+        <div class="container">
+
+            <div class="text-center mb-4">
+
+                <h2 class="font-weight-bold">
+                    Contact Us
+                </h2>
+
+                <p class="text-muted">
+                    Have a question? Send us a message.
+                </p>
+
+            </div>
+
+
+            <div class="row justify-content-center">
+
+                <div class="col-md-8">
+
+                    <form onsubmit="submitContact(event)">
+
+                        <div class="form-group">
+
+                            <label for="contactName">
+                                Name
+                            </label>
+
+                            <input type="text" class="form-control" id="contactName" placeholder="Enter your name"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="contactEmail">
+                                Email
+                            </label>
+
+                            <input type="email" class="form-control" id="contactEmail" placeholder="Enter your email"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="contactMessage">
+                                Message
+                            </label>
+
+                            <textarea class="form-control" id="contactMessage" rows="5"
+                                placeholder="Write your message..." required></textarea>
+
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">
+
+                            Send Message
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+     LOGIN MODAL
+===================================================== -->
+
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content">
+
+
+                <div class="modal-header bg-dark text-white">
+
+                    <h5 class="modal-title">
+                        Login to iCoder
+                    </h5>
+
+                    <button type="button" class="close text-white" data-dismiss="modal">
+
+                        <span>&times;</span>
+
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <!-- Error -->
+
+                    <div id="loginError" class="error-message">
+                    </div>
+
+
+                    <form id="loginForm" onsubmit="loginUser(event)">
+
+
+                        <!-- Email -->
+
+                        <div class="form-group">
+
+                            <label for="loginEmail">
+                                Email Address
+                            </label>
+
+                            <input type="email" class="form-control" id="loginEmail" placeholder="Enter your email"
+                                required>
+
+                        </div>
+
+
+                        <!-- Password -->
+
+                        <div class="form-group">
+
+                            <label for="loginPassword">
+                                Password
+                            </label>
+
+                            <div class="password-wrapper">
+
+                                <input type="password" class="form-control" id="loginPassword"
+                                    placeholder="Enter your password" required>
+
+                                <button type="button" class="password-toggle"
+                                    onclick="togglePassword('loginPassword', this)">
+
+                                    👁
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-check mb-3">
+
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+
+                            <label class="form-check-label" for="rememberMe">
+
+                                Remember me
+
+                            </label>
+
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary btn-block">
+
+                            Login
+
+                        </button>
+
+                    </form>
+
+
+                    <p class="text-center mt-3 mb-0">
+
+                        Don't have an account?
+
+                        <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#signupModal">
+
+                            Sign Up
+
+                        </a>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+     SIGN UP MODAL
+===================================================== -->
+
+    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content">
+
+
+                <div class="modal-header bg-primary text-white">
+
+                    <h5 class="modal-title">
+                        Create Your iCoder Account
+                    </h5>
+
+                    <button type="button" class="close text-white" data-dismiss="modal">
+
+                        <span>&times;</span>
+
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+
+                    <!-- Error -->
+
+                    <div id="signupError" class="error-message">
+                    </div>
+
+
+                    <!-- Success -->
+
+                    <div id="signupSuccess" class="success-message">
+                    </div>
+
+
+                    <form id="signupForm" onsubmit="signupUser(event)">
+
+
+                        <!-- Name -->
+
+                        <div class="form-group">
+
+                            <label for="signupName">
+                                Full Name
+                            </label>
+
+                            <input type="text" class="form-control" id="signupName" placeholder="Enter your full name"
+                                minlength="2" required>
+
+                        </div>
+
+
+                        <!-- Email -->
+
+                        <div class="form-group">
+
+                            <label for="signupEmail">
+                                Email Address
+                            </label>
+
+                            <input type="email" class="form-control" id="signupEmail" placeholder="Enter your email"
+                                required>
+
+                        </div>
+
+
+                        <!-- Password -->
+
+                        <div class="form-group">
+
+                            <label for="signupPassword">
+                                Password
+                            </label>
+
+                            <div class="password-wrapper">
+
+                                <input type="password" class="form-control" id="signupPassword"
+                                    placeholder="Minimum 6 characters" minlength="6" required>
+
+                                <button type="button" class="password-toggle"
+                                    onclick="togglePassword('signupPassword', this)">
+
+                                    👁
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Confirm Password -->
+
+                        <div class="form-group">
+
+                            <label for="confirmPassword">
+                                Confirm Password
+                            </label>
+
+                            <div class="password-wrapper">
+
+                                <input type="password" class="form-control" id="confirmPassword"
+                                    placeholder="Confirm your password" minlength="6" required>
+
+                                <button type="button" class="password-toggle"
+                                    onclick="togglePassword('confirmPassword', this)">
+
+                                    👁
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Terms -->
+
+                        <div class="form-check mb-3">
+
+                            <input type="checkbox" class="form-check-input" id="terms" required>
+
+                            <label class="form-check-label" for="terms">
+
+                                I agree to the Terms & Conditions
+
+                            </label>
+
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary btn-block">
+
+                            Create Account
+
+                        </button>
+
+                    </form>
+
+
+                    <p class="text-center mt-3 mb-0">
+
+                        Already have an account?
+
+                        <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">
+
+                            Login
+
+                        </a>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+     FOOTER
+===================================================== -->
+
+    <footer>
+
+        <div class="container text-center">
+
+            <h5>
+                iCoder
+            </h5>
+
+            <p class="copyright">
+                © 2026 iCoder. All Rights Reserved.
+            </p>
+
+            <div class="mt-3">
+
+                <a href="#">
+                    Home
+                </a>
+
+                <a href="#about">
+                    About
+                </a>
+
+                <a href="#contact">
+                    Contact
+                </a>
+
+                <a href="#">
+                    Privacy
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =====================================================
+     BOOTSTRAP JAVASCRIPT
+===================================================== -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+
+    <!-- =====================================================
+     AUTHENTICATION JAVASCRIPT
+===================================================== -->
+
+    <script>
+
+
+        /* =====================================================
+           GET USERS FROM LOCAL STORAGE
+        ===================================================== */
+
+        function getUsers() {
+
+            const users =
+                localStorage.getItem("iCoderUsers");
+
+            return users
+                ? JSON.parse(users)
+                : [];
+        }
+
+
+        /* =====================================================
+           SAVE USERS
+        ===================================================== */
+
+        function saveUsers(users) {
+
+            localStorage.setItem(
+                "iCoderUsers",
+                JSON.stringify(users)
+            );
+        }
+
+
+        /* =====================================================
+           SIGN UP
+        ===================================================== */
+
+        function signupUser(event) {
+
+            event.preventDefault();
+
+
+            const name =
+                document.getElementById("signupName")
+                    .value
+                    .trim();
+
+            const email =
+                document.getElementById("signupEmail")
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+            const password =
+                document.getElementById("signupPassword")
+                    .value;
+
+            const confirmPassword =
+                document.getElementById("confirmPassword")
+                    .value;
+
+
+            const errorBox =
+                document.getElementById("signupError");
+
+            const successBox =
+                document.getElementById("signupSuccess");
+
+
+            // Clear messages
+
+            errorBox.style.display = "none";
+            successBox.style.display = "none";
+
+
+            /* Validate name */
+
+            if (name.length < 2) {
+
+                showError(
+                    errorBox,
+                    "Please enter a valid name."
+                );
+
+                return;
+            }
+
+
+            /* Validate password length */
+
+            if (password.length < 6) {
+
+                showError(
+                    errorBox,
+                    "Password must contain at least 6 characters."
+                );
+
+                return;
+            }
+
+
+            /* Validate passwords */
+
+            if (password !== confirmPassword) {
+
+                showError(
+                    errorBox,
+                    "Passwords do not match."
+                );
+
+                return;
+            }
+
+
+            /* Get existing users */
+
+            const users = getUsers();
+
+
+            /* Check duplicate email */
+
+            const existingUser =
+                users.find(
+                    user => user.email === email
+                );
+
+
+            if (existingUser) {
+
+                showError(
+                    errorBox,
+                    "An account with this email already exists."
+                );
+
+                return;
+            }
+
+
+            /* Create user */
+
+            const newUser = {
+
+                id: Date.now(),
+
+                name: name,
+
+                email: email,
+
+                password: password
+
+            };
+
+
+            users.push(newUser);
+
+
+            /* Save */
+
+            saveUsers(users);
+
+
+            /* Success message */
+
+            successBox.innerText =
+                "Account created successfully! You can now login.";
+
+            successBox.style.display = "block";
+
+
+            /* Reset */
+
+            document.getElementById(
+                "signupForm"
+            ).reset();
+
+
+            /*
+               Automatically open login
+               after a short delay
+            */
+
+            setTimeout(function () {
+
+                $("#signupModal").modal("hide");
+
+                $("#loginModal").modal("show");
+
+            }, 1200);
+
+        }
+
+
+        /* =====================================================
+           LOGIN
+        ===================================================== */
+
+        function loginUser(event) {
+
+            event.preventDefault();
+
+
+            const email =
+                document.getElementById("loginEmail")
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+            const password =
+                document.getElementById("loginPassword")
+                    .value;
+
+
+            const errorBox =
+                document.getElementById("loginError");
+
+
+            errorBox.style.display = "none";
+
+
+            /* Get users */
+
+            const users = getUsers();
+
+
+            /* Find matching user */
+
+            const user =
+                users.find(
+                    storedUser =>
+                        storedUser.email === email &&
+                        storedUser.password === password
+                );
+
+
+            /* Invalid login */
+
+            if (!user) {
+
+                showError(
+                    errorBox,
+                    "Incorrect email or password. Please try again."
+                );
+
+                return;
+            }
+
+
+            /* Save current session */
+
+            localStorage.setItem(
+                "iCoderCurrentUser",
+                JSON.stringify({
+                    id: user.id,
+                    name: user.name,
+                    email: user.email
+                })
+            );
+
+
+            /* Close modal */
+
+            $("#loginModal").modal("hide");
+
+
+            /* Reset form */
+
+            document.getElementById(
+                "loginForm"
+            ).reset();
+
+
+            /* Update navbar */
+
+            updateNavbar();
+
+
+            /* Welcome message */
+
+            setTimeout(function () {
+
+                alert(
+                    "Welcome back, " +
+                    user.name +
+                    "!"
+                );
+
+            }, 400);
+
+        }
+
+
+        /* =====================================================
+           UPDATE NAVBAR
+        ===================================================== */
+
+        function updateNavbar() {
+
+            const currentUser =
+                localStorage.getItem(
+                    "iCoderCurrentUser"
+                );
+
+
+            const authButtons =
+                document.getElementById(
+                    "authButtons"
+                );
+
+            const userArea =
+                document.getElementById(
+                    "userArea"
+                );
+
+            const loggedUserName =
+                document.getElementById(
+                    "loggedUserName"
+                );
+
+
+            if (currentUser) {
+
+                const user =
+                    JSON.parse(currentUser);
+
+
+                authButtons.style.display =
+                    "none";
+
+                userArea.style.display =
+                    "flex";
+
+                loggedUserName.innerText =
+                    user.name;
+
+            } else {
+
+                authButtons.style.display =
+                    "flex";
+
+                userArea.style.display =
+                    "none";
+
+                loggedUserName.innerText =
+                    "";
+
+            }
+
+        }
+
+
+        /* =====================================================
+           LOGOUT
+        ===================================================== */
+
+        function logoutUser() {
+
+            localStorage.removeItem(
+                "iCoderCurrentUser"
+            );
+
+
+            updateNavbar();
+
+
+            alert(
+                "You have been logged out successfully."
+            );
+
+        }
+
+
+        /* =====================================================
+           SHOW ERROR
+        ===================================================== */
+
+        function showError(element, message) {
+
+            element.innerText =
+                message;
+
+            element.style.display =
+                "block";
+
+        }
+
+
+        /* =====================================================
+           PASSWORD VISIBILITY
+        ===================================================== */
+
+        function togglePassword(
+            inputId,
+            button
+        ) {
+
+            const input =
+                document.getElementById(
+                    inputId
+                );
+
+
+            if (input.type === "password") {
+
+                input.type = "text";
+
+                button.innerText = "🙈";
+
+            } else {
+
+                input.type = "password";
+
+                button.innerText = "👁";
+
+            }
+
+        }
+
+
+        /* =====================================================
+           SEARCH
+        ===================================================== */
+
+        function searchWebsite(event) {
+
+            event.preventDefault();
+
+
+            const searchInput =
+                document.getElementById(
+                    "searchInput"
+                )
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            if (searchInput === "") {
+
+                alert(
+                    "Please enter something to search."
+                );
+
+                return;
+            }
+
+
+            const pageText =
+                document.body.innerText
+                    .toLowerCase();
+
+
+            if (pageText.includes(searchInput)) {
+
+                alert(
+                    "Search result found for: " +
+                    searchInput
+                );
+
+            } else {
+
+                alert(
+                    "No results found for: " +
+                    searchInput
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           CONTACT FORM
+        ===================================================== */
+
+        function submitContact(event) {
+
+            event.preventDefault();
+
+
+            const name =
+                document.getElementById(
+                    "contactName"
+                ).value;
+
+
+            alert(
+                "Thank you, " +
+                name +
+                "! Your message has been submitted."
+            );
+
+
+            event.target.reset();
+
+        }
+
+
+        /* =====================================================
+           CHECK LOGIN WHEN PAGE LOADS
+        ===================================================== */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                updateNavbar();
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
+```
